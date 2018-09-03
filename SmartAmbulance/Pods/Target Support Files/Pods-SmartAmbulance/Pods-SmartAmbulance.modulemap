@@ -1,0 +1,6 @@
+framework module Pods_SmartAmbulance {
+  umbrella header "Pods-SmartAmbulance-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,58 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'SmartAmbulance' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SmartAmbulance
+  # Everything has a beginning. For using a framework, it's installation.
+  
+  # Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView.
+  pod 'IQKeyboardManager'
+  
+  # Pod for networking
+  pod 'Alamofire'
+  
+  # Pod for json Parsing
+  pod 'SwiftyJSON'
+  
+  # Pod for Loading
+  pod 'MBProgressHUD', '~> 0.9'
+  
+  # Pod for Calender
+  pod 'FSCalendar'
+  
+  # Pods for Range Slider
+  pod 'RangeUISlider'
+
+  # Pods for AutoLayout
+  pod 'SnapKit'
+
+  # Pods for mapClustering
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  
+  # Pods for Expandable Cell
+  pod 'ExpandableCell'
+  
+  # Pods for images
+  pod 'Kingfisher'
+
+  # Pods for paging view
+  pod 'Pages'
+  
+  # Pods for Google firebase
+  pod 'Firebase/Core'
+
+  target 'SmartAmbulanceTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'SmartAmbulanceUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
