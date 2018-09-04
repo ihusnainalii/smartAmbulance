@@ -34,10 +34,15 @@ class VersionViewController: UIViewController {
     
     
     // MARK: - IBAction
+    // MARK: - btn Back Tapped Action
     @IBAction func btnBackTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: - btn rate App  Tapped Action
     @IBAction func btnRateUsTapped(_ sender: UIButton) {
+        
+        //Add here you app id if uploaded to app store
         rateApp(appId: "id959379869") { success in
             print("RateApp \(success)")
         }
@@ -46,6 +51,8 @@ class VersionViewController: UIViewController {
     
     // MARK: - Custom function
     func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
+        
+        // optional unwrap 
         guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
             completion(false)
             return

@@ -30,6 +30,7 @@ class EmergencyViewController: UIViewController {
     
 
     // MARK: - IBAction
+    // MARK: - btn Back Tapped Action
     @IBAction func btnBackTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }

@@ -31,12 +31,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Setup view
-        btnCurrentLocation.layer.borderWidth = 1
-        btnCurrentLocation.layer.borderColor = UIColor.black.cgColor
-        btnCurrentLocation.layer.cornerRadius = btnCurrentLocation.bounds.height / 2
-        btnCurrentLocation.backgroundColor = .white
+        // Button Setup
+        btnCurrentLocation.layer.borderWidth = 1 // borderr width
+        btnCurrentLocation.layer.borderColor = UIColor.black.cgColor // Color to border of button
+        btnCurrentLocation.layer.cornerRadius = btnCurrentLocation.bounds.height / 2 // Rounded Button
+        btnCurrentLocation.backgroundColor = .white // background color
         
         // bringSubviewToFront
+        // As map every time map comes in front of these UI elements
         mapView.bringSubview(toFront: btnCurrentLocation)
         mapView.bringSubview(toFront: btnMpenMenu)
         mapView.bringSubview(toFront: titleLabel)
@@ -45,15 +47,18 @@ class ViewController: UIViewController {
         mapView.delegate = self
         
         // fetch Data
+        // get all ambulances from firebase
         SmartManager.shared.getAmbulancesData()
         
         // Notification observer
+        // When data retrive suvccessfully map ploted all the ambulances
         let name = Notification.Name(rawValue: "dataRetrive")
         NotificationCenter.default.addObserver(self, selector: #selector(updateAmbulancesOnMap), name: name, object: nil)
         MBProgressHUD.showAdded(to: self.view, animated: trueValue)
         
         
         // Add Swipe gesture
+        // Open menu
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(SwipeOpenMenu))
         recognizer.direction = .right
         self.view.addGestureRecognizer(recognizer)
@@ -69,8 +74,11 @@ class ViewController: UIViewController {
     }
 
     // MARK: -  IBAction
+    // MARK: -  btn Current Location Tapped
     @IBAction func btnCurrentLocationTapped(_ sender: UIButton) {
     }
+    
+    // MARK: -  btn Open Menu Tapped
     @IBAction func btnOpenMenuTapped(_ sender: UIButton) {
         SwipeOpenMenu()
     }
@@ -80,7 +88,8 @@ class ViewController: UIViewController {
     @objc private func SwipeOpenMenu() {
         if !SmartManager.shared.isMenuOpen {
             SmartManager.shared.isMenuOpen = true
-            self.tabBarController?.tabBar.isHidden = true
+            
+            //Add Child view to viewController
             let popOverVC = storyboard?.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
             self.addChildViewController(popOverVC)
             let xPosition = self.view.frame.origin.x
@@ -89,6 +98,7 @@ class ViewController: UIViewController {
             let height = UIScreen.main.bounds.height
             popOverVC.view.frame = CGRect(x: xPosition, y: yPosition, width: width, height: height + 1)
             
+            //Transition
             let transition = CATransition()
             transition.duration = 0.5
             transition.type = kCATransitionPush
@@ -96,6 +106,7 @@ class ViewController: UIViewController {
             transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
             popOverVC.sideMenuVIew.layer.add(transition, forKey: kCATransition)
             
+            //Add Subview
             self.view.addSubview(popOverVC.view)
             popOverVC.didMove(toParentViewController: self)
         }
@@ -103,10 +114,13 @@ class ViewController: UIViewController {
     
     private func addAmbulancesOnMap() {
         for ambulance in self.ambulances {
+            
+            //get latitude and longitude
             guard let lat = ambulance.ambLat, let long =  ambulance.ambLong else {
                 return
             }
             
+            //Add Camera to amp to focus on first ambulance
             if !isShown {
                 UIView.animate(withDuration: 0.5, animations: {
                     
@@ -121,6 +135,7 @@ class ViewController: UIViewController {
                 }
             }
             
+            //Add merkers where ambulance is
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
             //marker.icon = UIImage(named: "ambulance")
@@ -128,30 +143,46 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: - Update kid info
+    // MARK: - update Ambulances OnMap
     @objc private func updateAmbulancesOnMap() {
+        //Remove loading view
         MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
+        
+        //Check for data to greater then zero
         if SmartManager.shared.ambulancesData.count > 0 {
-            ambulances = SmartManager.shared.ambulancesData
-            self.isShown = false
-            mapView.clear()
-            addAmbulancesOnMap()
-        }else{
             
+            //Add data to local variable as a copy
+            ambulances = SmartManager.shared.ambulancesData
+            
+            //This check is to focus camera on map for first time
+            self.isShown = false
+            
+            //Remove all markers from map
+            mapView.clear()
+            
+            //Plot markers from map
+            addAmbulancesOnMap()
         }
     }
     
     // MARK: - Update kid info
     @objc private func updateMap() {
-        // fetch Data
+        
+        //Remove all data from array
         SmartManager.shared.ambulancesData.removeAll()
+        
+        //Remove all markers from map
         mapView.clear()
+        
+        // fetch Data from firebase db
         SmartManager.shared.getAmbulancesData()
     }
     
 }
 
 extension ViewController: GMSMapViewDelegate {
+    
+    // Click on each ambulance to get detail 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         marker.iconView?.tintColor = .blue
         let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
