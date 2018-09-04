@@ -19,12 +19,6 @@ target 'SmartAmbulance' do
   
   # Pod for Loading
   pod 'MBProgressHUD', '~> 0.9'
-  
-  # Pod for Calender
-  pod 'FSCalendar'
-  
-  # Pods for Range Slider
-  pod 'RangeUISlider'
 
   # Pods for AutoLayout
   pod 'SnapKit'
@@ -33,17 +27,12 @@ target 'SmartAmbulance' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   
-  # Pods for Expandable Cell
-  pod 'ExpandableCell'
-  
   # Pods for images
   pod 'Kingfisher'
 
-  # Pods for paging view
-  pod 'Pages'
-  
   # Pods for Google firebase
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
   target 'SmartAmbulanceTests' do
     inherit! :search_paths

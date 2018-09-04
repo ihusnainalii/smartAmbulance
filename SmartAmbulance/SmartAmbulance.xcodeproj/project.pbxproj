@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		09DAAC07620ECE42FAB4EA2A /* Pods_SmartAmbulanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B682CDEEDE70E90DA2AE24A /* Pods_SmartAmbulanceUITests.framework */; };
+		185CD690213E727D00CB3BCF /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD68F213E727D00CB3BCF /* SideMenuViewController.swift */; };
+		185CD694213E754E00CB3BCF /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD692213E754E00CB3BCF /* SideMenuCell.swift */; };
+		185CD695213E754E00CB3BCF /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185CD693213E754E00CB3BCF /* SideMenuCell.xib */; };
+		185CD698213E773200CB3BCF /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD697213E773200CB3BCF /* SideMenu.swift */; };
+		185CD69B213E79A300CB3BCF /* HeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD699213E79A300CB3BCF /* HeaderSection.swift */; };
+		185CD69C213E79A300CB3BCF /* HeaderSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185CD69A213E79A300CB3BCF /* HeaderSection.xib */; };
+		1862ED25213D50F500AE56F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1862ED24213D50F400AE56F7 /* GoogleService-Info.plist */; };
+		1862ED28213D6E6700AE56F7 /* Ambulance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862ED27213D6E6700AE56F7 /* Ambulance.swift */; };
+		1862ED2B213D6EF000AE56F7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862ED2A213D6EF000AE56F7 /* Constants.swift */; };
+		1862ED2E213D6F8600AE56F7 /* SmartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862ED2D213D6F8600AE56F7 /* SmartManager.swift */; };
 		18726415213D40B000BD7BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18726414213D40B000BD7BBE /* AppDelegate.swift */; };
 		18726417213D40B000BD7BBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18726416213D40B000BD7BBE /* ViewController.swift */; };
 		1872641A213D40B000BD7BBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18726418213D40B000BD7BBE /* Main.storyboard */; };
@@ -38,6 +48,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		185CD68F213E727D00CB3BCF /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		185CD692213E754E00CB3BCF /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
+		185CD693213E754E00CB3BCF /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
+		185CD697213E773200CB3BCF /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
+		185CD699213E79A300CB3BCF /* HeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSection.swift; sourceTree = "<group>"; };
+		185CD69A213E79A300CB3BCF /* HeaderSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderSection.xib; sourceTree = "<group>"; };
+		1862ED24213D50F400AE56F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1862ED27213D6E6700AE56F7 /* Ambulance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ambulance.swift; sourceTree = "<group>"; };
+		1862ED2A213D6EF000AE56F7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1862ED2D213D6F8600AE56F7 /* SmartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartManager.swift; sourceTree = "<group>"; };
 		18726411213D40B000BD7BBE /* SmartAmbulance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartAmbulance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18726414213D40B000BD7BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18726416213D40B000BD7BBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +111,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		185CD68E213E714100CB3BCF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				185CD696213E771D00CB3BCF /* Structs */,
+				185CD691213E752100CB3BCF /* tableViewCells */,
+				18726416213D40B000BD7BBE /* ViewController.swift */,
+				185CD68F213E727D00CB3BCF /* SideMenuViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		185CD691213E752100CB3BCF /* tableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				185CD692213E754E00CB3BCF /* SideMenuCell.swift */,
+				185CD693213E754E00CB3BCF /* SideMenuCell.xib */,
+				185CD699213E79A300CB3BCF /* HeaderSection.swift */,
+				185CD69A213E79A300CB3BCF /* HeaderSection.xib */,
+			);
+			path = tableViewCells;
+			sourceTree = "<group>";
+		};
+		185CD696213E771D00CB3BCF /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				185CD697213E773200CB3BCF /* SideMenu.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		1862ED26213D6E4D00AE56F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1862ED27213D6E6700AE56F7 /* Ambulance.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1862ED29213D6ED400AE56F7 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				1862ED2A213D6EF000AE56F7 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		1862ED2C213D6F7200AE56F7 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				1862ED2D213D6F8600AE56F7 /* SmartManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		18726408213D40B000BD7BBE = {
 			isa = PBXGroup;
 			children = (
@@ -116,12 +190,16 @@
 		18726413213D40B000BD7BBE /* SmartAmbulance */ = {
 			isa = PBXGroup;
 			children = (
+				185CD68E213E714100CB3BCF /* ViewControllers */,
+				1862ED2C213D6F7200AE56F7 /* Manager */,
+				1862ED29213D6ED400AE56F7 /* Constants */,
+				1862ED26213D6E4D00AE56F7 /* Models */,
 				18726414213D40B000BD7BBE /* AppDelegate.swift */,
-				18726416213D40B000BD7BBE /* ViewController.swift */,
 				18726418213D40B000BD7BBE /* Main.storyboard */,
 				1872641E213D40B100BD7BBE /* Assets.xcassets */,
 				18726420213D40B100BD7BBE /* LaunchScreen.storyboard */,
 				18726423213D40B100BD7BBE /* Info.plist */,
+				1862ED24213D50F400AE56F7 /* GoogleService-Info.plist */,
 				1872641B213D40B000BD7BBE /* SmartAmbulance.xcdatamodeld */,
 			);
 			path = SmartAmbulance;
@@ -278,7 +356,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				18726422213D40B100BD7BBE /* LaunchScreen.storyboard in Resources */,
+				1862ED25213D50F500AE56F7 /* GoogleService-Info.plist in Resources */,
 				1872641F213D40B100BD7BBE /* Assets.xcassets in Resources */,
+				185CD695213E754E00CB3BCF /* SideMenuCell.xib in Resources */,
+				185CD69C213E79A300CB3BCF /* HeaderSection.xib in Resources */,
 				1872641A213D40B000BD7BBE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,31 +407,25 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SmartAmbulance/Pods-SmartAmbulance-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/ExpandableCell/ExpandableCell.framework",
-				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/Pages/Pages.framework",
-				"${BUILT_PRODUCTS_DIR}/RangeUISlider/RangeUISlider.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExpandableCell.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pages.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RangeUISlider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,9 +496,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185CD69B213E79A300CB3BCF /* HeaderSection.swift in Sources */,
+				1862ED2B213D6EF000AE56F7 /* Constants.swift in Sources */,
+				1862ED2E213D6F8600AE56F7 /* SmartManager.swift in Sources */,
 				18726417213D40B000BD7BBE /* ViewController.swift in Sources */,
+				185CD698213E773200CB3BCF /* SideMenu.swift in Sources */,
 				18726415213D40B000BD7BBE /* AppDelegate.swift in Sources */,
+				185CD690213E727D00CB3BCF /* SideMenuViewController.swift in Sources */,
+				1862ED28213D6E6700AE56F7 /* Ambulance.swift in Sources */,
 				1872641D213D40B000BD7BBE /* SmartAmbulance.xcdatamodeld in Sources */,
+				185CD694213E754E00CB3BCF /* SideMenuCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
