@@ -22,12 +22,12 @@ class SmartManager: NSObject{
     // MARK: - Shared Variables
     //APP Delegate
     let appDelegate:AppDelegate!
-    let ambulancesData = [Ambulance]()
+    var ambulancesData = [Ambulance]()
     
     // MARK: -  Variables
     var ref: DatabaseReference!
     var handle: DatabaseHandle!
-    
+    var isMenuOpen = false
     
     
     // override initlizer
@@ -40,9 +40,18 @@ class SmartManager: NSObject{
     func getAmbulancesData() {
         ref = Database.database().reference()
         handle = ref.observe(.value, with: { (ambulances) in
-            for ambulance in ambulances.children {
-                print(ambulance)
+            for ambulance in ambulances.children.allObjects as! [DataSnapshot] {
+                let data =  ambulance.value as! String
+                let dataValues = data.components(separatedBy: ",")
+                guard let latitude = Double(dataValues[0]),  let longitude = Double(dataValues[1]) else {return}
+                let ambulanceObject = Ambulance(latitude: latitude, longitude: longitude)
+                self.ambulancesData.append(ambulanceObject)
             }
+            
+            //Notification center method
+            //Broad Cast if user info update
+            let name = Notification.Name(rawValue: "dataRetrive")
+            NotificationCenter.default.post(name: name, object: nil)
         })
         
         

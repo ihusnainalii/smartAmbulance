@@ -14,6 +14,10 @@
 		185CD698213E773200CB3BCF /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD697213E773200CB3BCF /* SideMenu.swift */; };
 		185CD69B213E79A300CB3BCF /* HeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD699213E79A300CB3BCF /* HeaderSection.swift */; };
 		185CD69C213E79A300CB3BCF /* HeaderSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185CD69A213E79A300CB3BCF /* HeaderSection.xib */; };
+		185CD69E213EA7D800CB3BCF /* EmergencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD69D213EA7D800CB3BCF /* EmergencyViewController.swift */; };
+		185CD6A0213EAB0D00CB3BCF /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD69F213EAB0D00CB3BCF /* AboutUsViewController.swift */; };
+		185CD6A2213EAE2800CB3BCF /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD6A1213EAE2800CB3BCF /* VersionViewController.swift */; };
+		185CD6A4213EB4DF00CB3BCF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CD6A3213EB4DF00CB3BCF /* DetailViewController.swift */; };
 		1862ED25213D50F500AE56F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1862ED24213D50F400AE56F7 /* GoogleService-Info.plist */; };
 		1862ED28213D6E6700AE56F7 /* Ambulance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862ED27213D6E6700AE56F7 /* Ambulance.swift */; };
 		1862ED2B213D6EF000AE56F7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862ED2A213D6EF000AE56F7 /* Constants.swift */; };
@@ -54,6 +58,10 @@
 		185CD697213E773200CB3BCF /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		185CD699213E79A300CB3BCF /* HeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSection.swift; sourceTree = "<group>"; };
 		185CD69A213E79A300CB3BCF /* HeaderSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderSection.xib; sourceTree = "<group>"; };
+		185CD69D213EA7D800CB3BCF /* EmergencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyViewController.swift; sourceTree = "<group>"; };
+		185CD69F213EAB0D00CB3BCF /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		185CD6A1213EAE2800CB3BCF /* VersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
+		185CD6A3213EB4DF00CB3BCF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1862ED24213D50F400AE56F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1862ED27213D6E6700AE56F7 /* Ambulance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ambulance.swift; sourceTree = "<group>"; };
 		1862ED2A213D6EF000AE56F7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -114,10 +122,13 @@
 		185CD68E213E714100CB3BCF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				185CD696213E771D00CB3BCF /* Structs */,
 				185CD691213E752100CB3BCF /* tableViewCells */,
 				18726416213D40B000BD7BBE /* ViewController.swift */,
 				185CD68F213E727D00CB3BCF /* SideMenuViewController.swift */,
+				185CD69D213EA7D800CB3BCF /* EmergencyViewController.swift */,
+				185CD69F213EAB0D00CB3BCF /* AboutUsViewController.swift */,
+				185CD6A1213EAE2800CB3BCF /* VersionViewController.swift */,
+				185CD6A3213EB4DF00CB3BCF /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -190,6 +201,7 @@
 		18726413213D40B000BD7BBE /* SmartAmbulance */ = {
 			isa = PBXGroup;
 			children = (
+				185CD696213E771D00CB3BCF /* Structs */,
 				185CD68E213E714100CB3BCF /* ViewControllers */,
 				1862ED2C213D6F7200AE56F7 /* Manager */,
 				1862ED29213D6ED400AE56F7 /* Constants */,
@@ -498,14 +510,18 @@
 			files = (
 				185CD69B213E79A300CB3BCF /* HeaderSection.swift in Sources */,
 				1862ED2B213D6EF000AE56F7 /* Constants.swift in Sources */,
+				185CD6A2213EAE2800CB3BCF /* VersionViewController.swift in Sources */,
 				1862ED2E213D6F8600AE56F7 /* SmartManager.swift in Sources */,
 				18726417213D40B000BD7BBE /* ViewController.swift in Sources */,
+				185CD6A0213EAB0D00CB3BCF /* AboutUsViewController.swift in Sources */,
 				185CD698213E773200CB3BCF /* SideMenu.swift in Sources */,
 				18726415213D40B000BD7BBE /* AppDelegate.swift in Sources */,
 				185CD690213E727D00CB3BCF /* SideMenuViewController.swift in Sources */,
 				1862ED28213D6E6700AE56F7 /* Ambulance.swift in Sources */,
 				1872641D213D40B000BD7BBE /* SmartAmbulance.xcdatamodeld in Sources */,
 				185CD694213E754E00CB3BCF /* SideMenuCell.swift in Sources */,
+				185CD69E213EA7D800CB3BCF /* EmergencyViewController.swift in Sources */,
+				185CD6A4213EB4DF00CB3BCF /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@ class SideMenuCell: UITableViewCell {
     @IBOutlet weak var cellImage: UIImageView!
     
     // MARK: - Variables
-    let menu = SideMenu()
+    var menu = SideMenu()
     
     
     // MARK: - IBOutlet
