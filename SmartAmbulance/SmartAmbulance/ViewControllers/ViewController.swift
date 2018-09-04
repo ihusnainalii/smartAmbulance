@@ -138,7 +138,10 @@ class ViewController: UIViewController {
             //Add merkers where ambulance is
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            //marker.icon = UIImage(named: "ambulance")
+            let ambulanceICONImage = UIImage(named: "ambulanceicon")!.withRenderingMode(.alwaysTemplate)
+            let markerView = UIImageView(image: ambulanceICONImage)
+            marker.iconView = markerView
+            marker.iconView?.tintColor = .black
             marker.map = mapView
         }
     }
@@ -184,7 +187,6 @@ extension ViewController: GMSMapViewDelegate {
     
     // Click on each ambulance to get detail 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        marker.iconView?.tintColor = .blue
         let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         self.present(nextVC, animated: true, completion: nil)
         return true
