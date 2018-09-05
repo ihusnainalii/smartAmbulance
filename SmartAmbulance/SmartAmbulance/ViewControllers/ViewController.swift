@@ -12,8 +12,11 @@ import FirebaseCore
 import Firebase
 import GoogleMaps
 import MBProgressHUD
+import UserNotifications
+import CoreLocation
+import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
 
     // MARK: -  IBOutlet
     @IBOutlet weak var mapView: GMSMapView!
@@ -22,9 +25,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: -  variables
+    let locationManager = CLLocationManager()
     var ambulances = [Ambulance]()
     var isShown = false
     var timer: Timer!
+    var userLatitude = 0.0
+    var userLongitude = 0.0
     
     // MARK: -  viewDidLoad
     override func viewDidLoad() {
@@ -46,9 +52,26 @@ class ViewController: UIViewController {
         // Delegate
         mapView.delegate = self
         
-        // fetch Data
-        // get all ambulances from firebase
-        SmartManager.shared.getAmbulancesData()
+        // Add Swipe gesture
+        // Open menu
+        let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(SwipeOpenMenu))
+        recognizer.direction = .right
+        self.view.addGestureRecognizer(recognizer)
+        
+        // Deleagte Confirm for location
+        // Ask for Authorisation from the User.
+        self.locationManager.delegate = self
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        
+        // Requesting for authorization
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
+            
+        })
         
         // Notification observer
         // When data retrive suvccessfully map ploted all the ambulances
@@ -56,15 +79,22 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateAmbulancesOnMap), name: name, object: nil)
         MBProgressHUD.showAdded(to: self.view, animated: trueValue)
         
-        
-        // Add Swipe gesture
-        // Open menu
-        let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(SwipeOpenMenu))
-        recognizer.direction = .right
-        self.view.addGestureRecognizer(recognizer)
-        
         // Add Timer to get data
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateMap), userInfo: nil, repeats: true)
+        
+    }
+    
+    // Get user current location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        self.userLatitude = locValue.latitude
+        self.userLongitude = locValue.longitude
+        
+        // fetch Data
+        // get all ambulances from firebase
+        SmartManager.shared.getAmbulancesData()
+        locationManager.stopUpdatingLocation()
     }
 
     // MARK: -  didReceiveMemoryWarning
@@ -76,6 +106,7 @@ class ViewController: UIViewController {
     // MARK: -  IBAction
     // MARK: -  btn Current Location Tapped
     @IBAction func btnCurrentLocationTapped(_ sender: UIButton) {
+        
     }
     
     // MARK: -  btn Open Menu Tapped
@@ -112,6 +143,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - Add Ambulances to map
     private func addAmbulancesOnMap() {
         for ambulance in self.ambulances {
             
@@ -165,20 +197,97 @@ class ViewController: UIViewController {
             
             //Plot markers from map
             addAmbulancesOnMap()
+            
+            //Check if ambulance is near to user
+            generateNotification()
         }
     }
     
     // MARK: - Update kid info
     @objc private func updateMap() {
         
-        //Remove all data from array
-        SmartManager.shared.ambulancesData.removeAll()
+        if self.userLongitude != 0.0 && self.userLatitude != 0.0 {
+            
+            //Remove all data from array
+            SmartManager.shared.ambulancesData.removeAll()
+            
+            //Remove all markers from map
+            mapView.clear()
+            
+            // fetch Data from firebase db
+            SmartManager.shared.getAmbulancesData()
+        }
         
-        //Remove all markers from map
-        mapView.clear()
+    }
+    
+    
+    // MARK: - Calculate distance and generate notification
+    private func generateNotification() {
+        for ambulance in self.ambulances {
+            //get latitude and longitude
+            guard let lat = ambulance.ambLat, let long =  ambulance.ambLong else {
+                return
+            }
+            
+            let dist  = distance(lat1: lat, lon1: long, lat2: self.userLatitude, lon2: self.userLongitude, unit: "M")
+            if Int(dist) < 1 {
+                //creating the notification content
+                let content = UNMutableNotificationContent()
+                
+                //adding title, subtitle, body and badge
+                content.title = "Hey this is Simplified iOS"
+                content.subtitle = "iOS Development is fun"
+                content.body = "We are learning about iOS Local Notification"
+                content.badge = 1
+                
+                //getting the notification trigger
+                //it will be called after 5 seconds
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                
+                //getting the notification request
+                let request = UNNotificationRequest(identifier: "SimplifiedIOSNotification", content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().delegate = self
+                
+                //adding the notification to notification center
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            }
+        }
+    }
+    
+    // MARK: - This function converts decimal degrees to radians
+    func deg2rad(deg:Double) -> Double {
+        return deg * Double.pi / 180
+    }
+    
+    // MARK: - This function converts radians to decimal degrees
+    func rad2deg(rad:Double) -> Double {
+        return rad * 180.0 / Double.pi
+    }
+    
+    func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double, unit:String) -> Double {
+        let theta = lon1 - lon2
+        var dist = sin(deg2rad(deg: lat1)) * sin(deg2rad(deg: lat2)) + cos(deg2rad(deg: lat1)) * cos(deg2rad(deg: lat2)) * cos(deg2rad(deg: theta))
+        dist = acos(dist)
+        dist = rad2deg(rad: dist)
+        dist = dist * 60 * 1.1515
+        if (unit == "K") {
+            dist = dist * 1.609344
+        } else if (unit == "N") {
+            dist = dist * 0.8684
+        }
+        return dist
+    }
+    
+}
+
+extension ViewController: UNUserNotificationCenterDelegate {
+    
+    // Display notification in foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        // fetch Data from firebase db
-        SmartManager.shared.getAmbulancesData()
+        //displaying the ios local notification when app is in foreground
+        completionHandler([.alert, .badge, .sound])
     }
     
 }
