@@ -23,6 +23,7 @@ class SmartManager: NSObject{
     //APP Delegate
     let appDelegate:AppDelegate!
     var ambulancesData = [Ambulance]()
+    var isNotificationSend = [String]()
     
     // MARK: -  Variables
     var ref: DatabaseReference!
@@ -42,9 +43,10 @@ class SmartManager: NSObject{
         handle = ref.observe(.value, with: { (ambulances) in
             for ambulance in ambulances.children.allObjects as! [DataSnapshot] {
                 let data =  ambulance.value as! String
+                let name =  ambulance.key as! String
                 let dataValues = data.components(separatedBy: ",")
                 guard let latitude = Double(dataValues[0]),  let longitude = Double(dataValues[1]) else {return}
-                let ambulanceObject = Ambulance(latitude: latitude, longitude: longitude)
+                let ambulanceObject = Ambulance(latitude: latitude, longitude: longitude, nameValue: name)
                 self.ambulancesData.append(ambulanceObject)
             }
             

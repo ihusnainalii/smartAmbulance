@@ -469,18 +469,39 @@
                                     <constraint firstAttribute="height" constant="13" id="8Xa-aB-YHY"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ambulance" translatesAutoresizingMaskIntoConstraints="NO" id="ite-NX-ckl">
+                                <rect key="frame" x="112.5" y="183.5" width="150" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="2Gz-pI-cdM"/>
+                                    <constraint firstAttribute="width" constant="150" id="pYD-he-off"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambulance : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cys-MK-cSW">
+                                <rect key="frame" x="20" y="313" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LG7-AH-fNK" firstAttribute="leading" secondItem="C4S-bi-HT1" secondAttribute="leading" id="1YC-BE-uvZ"/>
                             <constraint firstItem="C4S-bi-HT1" firstAttribute="trailing" secondItem="5rJ-hi-hxT" secondAttribute="trailing" id="7Ww-QM-1dM"/>
+                            <constraint firstItem="Cys-MK-cSW" firstAttribute="leading" secondItem="C4S-bi-HT1" secondAttribute="leading" constant="20" id="9hU-NN-AnQ"/>
                             <constraint firstItem="LG7-AH-fNK" firstAttribute="top" secondItem="C4S-bi-HT1" secondAttribute="top" id="B0j-3U-jo4"/>
+                            <constraint firstItem="C4S-bi-HT1" firstAttribute="trailing" secondItem="Cys-MK-cSW" secondAttribute="trailing" constant="20" id="IE9-8e-l4L"/>
                             <constraint firstItem="5rJ-hi-hxT" firstAttribute="leading" secondItem="C4S-bi-HT1" secondAttribute="leading" id="SbL-y3-nHl"/>
+                            <constraint firstItem="ite-NX-ckl" firstAttribute="centerX" secondItem="ghr-UM-qZF" secondAttribute="centerX" id="aka-1F-m4i"/>
                             <constraint firstItem="5rJ-hi-hxT" firstAttribute="top" secondItem="LG7-AH-fNK" secondAttribute="bottom" id="hES-Qf-WRA"/>
+                            <constraint firstItem="ite-NX-ckl" firstAttribute="centerY" secondItem="ghr-UM-qZF" secondAttribute="centerY" constant="-100" id="mM9-aQ-FhQ"/>
                             <constraint firstItem="C4S-bi-HT1" firstAttribute="trailing" secondItem="LG7-AH-fNK" secondAttribute="trailing" id="pbx-Hw-n0K"/>
+                            <constraint firstItem="Cys-MK-cSW" firstAttribute="top" secondItem="ite-NX-ckl" secondAttribute="bottom" constant="30" id="q4A-jZ-yy7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C4S-bi-HT1"/>
                     </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="Cys-MK-cSW" id="iZo-2H-Dp9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLZ-vl-zaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -15,18 +15,21 @@ class Ambulance: NSObject {
     //MARK:- Data Members
     var ambLat: Double!
     var ambLong: Double!
+    var name: String!
     
     
     //MARK:- Class init
     override init() {
         ambLat = doubleOValue
         ambLong = doubleOValue
+        name = blankValue
     }
     
     //MARK:- Class init to load user details from dict
-    convenience init(latitude: Double, longitude: Double) {
+    convenience init(latitude: Double, longitude: Double, nameValue: String) {
         self.init()
         ambLat = latitude
         ambLong = longitude
+        name = nameValue
     }
 }

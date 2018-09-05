@@ -174,6 +174,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let markerView = UIImageView(image: ambulanceICONImage)
             marker.iconView = markerView
             marker.iconView?.tintColor = .black
+            marker.title = ambulance.name
             marker.map = mapView
         }
     }
@@ -225,32 +226,51 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     private func generateNotification() {
         for ambulance in self.ambulances {
             //get latitude and longitude
-            guard let lat = ambulance.ambLat, let long =  ambulance.ambLong else {
+            guard let lat = ambulance.ambLat, let long =  ambulance.ambLong, let name = ambulance.name else {
                 return
             }
             
-            let dist  = distance(lat1: lat, lon1: long, lat2: self.userLatitude, lon2: self.userLongitude, unit: "M")
+            let dist  = distance(lat1: lat, lon1: long, lat2: self.userLatitude, lon2: self.userLongitude, unit: "M") // M for mils, KM for kilometer
             if Int(dist) < 1 {
-                //creating the notification content
-                let content = UNMutableNotificationContent()
-                
-                //adding title, subtitle, body and badge
-                content.title = "Hey this is Simplified iOS"
-                content.subtitle = "iOS Development is fun"
-                content.body = "We are learning about iOS Local Notification"
-                content.badge = 1
-                
-                //getting the notification trigger
-                //it will be called after 5 seconds
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                
-                //getting the notification request
-                let request = UNNotificationRequest(identifier: "SimplifiedIOSNotification", content: content, trigger: trigger)
-                
-                UNUserNotificationCenter.current().delegate = self
-                
-                //adding the notification to notification center
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                let latLongStr = String(format:"%f", lat) + "," + String(format:"%f", long)
+                if SmartManager.shared.isNotificationSend.contains(latLongStr) {
+                    print("Value found")
+                }else{
+                    print("Value not found")
+                    SmartManager.shared.isNotificationSend.append(latLongStr)
+                    //creating the notification content
+                    let content = UNMutableNotificationContent()
+                    
+                    let distanceValue = Double(round(100 * dist) / 100)
+                    
+                    //adding title, subtitle, body and badge
+                    content.title = "Ambulance nearby"
+                    if UIApplication.shared.applicationState == .active {
+                        //Application Active/Foreground State
+                        content.badge = 0
+                        content.body = "There is an ambulance \(name) nearby your location at \(distanceValue) Miles."
+                    }else if UIApplication.shared.applicationState == .background{
+                        //Application Background State
+                        content.badge = 1
+                        content.body = "There is an ambulance \(name) nearby your location at \(distanceValue) Miles. Open app to see the location of ambulance."
+                    }else if UIApplication.shared.applicationState == .inactive {
+                        //Application Inactive State
+                        content.badge = 1
+                        content.body = "There is an ambulance \(name) nearby your location at \(distanceValue) Miles. Open app to see the location of ambulance."
+                    }
+                    
+                    //getting the notification trigger
+                    //it will be called after 5 seconds
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                    
+                    //getting the notification request
+                    let request = UNNotificationRequest(identifier: "SimplifiedIOSNotification", content: content, trigger: trigger)
+                    
+                    UNUserNotificationCenter.current().delegate = self
+                    
+                    //adding the notification to notification center
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                }
             }
         }
     }
@@ -297,6 +317,8 @@ extension ViewController: GMSMapViewDelegate {
     // Click on each ambulance to get detail 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        guard let name = marker.title else {return true}
+        nextVC.name = name
         self.present(nextVC, animated: true, completion: nil)
         return true
     }

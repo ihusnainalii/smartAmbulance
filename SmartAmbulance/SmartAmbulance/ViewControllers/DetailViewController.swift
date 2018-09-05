@@ -11,14 +11,21 @@ import UIKit
 class DetailViewController: UIViewController {
 
     // MARK: - IBOutlet
+    @IBOutlet weak var nameLabel: UILabel!
     
     // MARK: - variable
+    var name = ""
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        if name != "" {
+            nameLabel.text = name
+        }else{
+            nameLabel.text = "unknown"
+        }
     }
     
     // MARK: - didReceiveMemoryWarning
