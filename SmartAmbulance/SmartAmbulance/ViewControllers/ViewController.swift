@@ -51,6 +51,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         // Delegate
         mapView.delegate = self
+        mapView.isMyLocationEnabled = true
         
         // Add Swipe gesture
         // Open menu
@@ -145,10 +146,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Add Ambulances to map
     private func addAmbulancesOnMap() {
-        
-        var distValue = 0
-        var latitude = 0.0
-        var longitude = 0.0
+        var distanceArray = [Int]()
+        var latLongArray = [String]()
         
         for ambulance in self.ambulances {
             
@@ -169,37 +168,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             
             let dist  = distance(lat1: lat, lon1: long, lat2: self.userLatitude, lon2: self.userLongitude, unit: "M")
-            if Int(dist) > 0 {
-                if Int(dist) > distValue {
-                    distValue = Int(dist)
-                    latitude = lat
-                    longitude = long
-                }else{
-                    latitude = lat
-                    longitude = long
-                }
-            }else{
-                distValue = Int(dist)
-                latitude = lat
-                longitude = long
-            }
+            distanceArray.append(Int(dist))
+            let latLongStr = String(format:"%f", lat) + "," + String(format:"%f", long)
+            latLongArray.append(latLongStr)
         }
         
+        guard let miniDistance = distanceArray.min() else {return}
+        if let index = distanceArray.index(of: miniDistance) {
+            self.addFocusToMap(latlong: latLongArray[index])
+        }
+    }
+    
+    private func addFocusToMap(latlong: String) {
+        let dataValues = latlong.replacingOccurrences(of: " ", with: "").components(separatedBy: ",")
+        guard let latitude = Double(dataValues[0]) else {
+            return
+        }
+        guard let longitude = Double(dataValues[1]) else {
+            return
+        }
         //Add Camera to amp to focus on nearest ambulance
-        if !isShown {
-            UIView.animate(withDuration: 0.5, animations: {
-                // Map Camera
-                let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 16.0)
-                self.mapView.camera = camera
-                
-            }) { (success) in
-                if success {
-                    self.isShown = true
-                }
-            }
-        }
-        
-        
+        UIView.animate(withDuration: 0.5, animations: {
+            // Map Camera
+            let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 16.0)
+            self.mapView.camera = camera
+            
+        })
     }
     
     // MARK: - update Ambulances OnMap
