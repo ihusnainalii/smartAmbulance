@@ -30,6 +30,10 @@
 		18726422213D40B100BD7BBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18726420213D40B100BD7BBE /* LaunchScreen.storyboard */; };
 		1872642D213D40B100BD7BBE /* SmartAmbulanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872642C213D40B100BD7BBE /* SmartAmbulanceTests.swift */; };
 		18726438213D40B100BD7BBE /* SmartAmbulanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18726437213D40B100BD7BBE /* SmartAmbulanceUITests.swift */; };
+		18E2773121411C26007F5335 /* EmergencyNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2772F21411C26007F5335 /* EmergencyNumberCell.swift */; };
+		18E2773221411C26007F5335 /* EmergencyNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E2773021411C26007F5335 /* EmergencyNumberCell.xib */; };
+		18E27734214120B5007F5335 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E27733214120B5007F5335 /* Contacts.swift */; };
+		18EAC4CC21413F490031BB2D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAC4CB21413F490031BB2D /* String+Extension.swift */; };
 		7C35FBD76DBAD29E8BE0B1CA /* Pods_SmartAmbulanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6544F4B02B74DA361465DFA6 /* Pods_SmartAmbulanceTests.framework */; };
 		E7B6BBB098D850BC6E320ED2 /* Pods_SmartAmbulance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442E5E386190B722B055167A /* Pods_SmartAmbulance.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +84,10 @@
 		18726433213D40B100BD7BBE /* SmartAmbulanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartAmbulanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18726437213D40B100BD7BBE /* SmartAmbulanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartAmbulanceUITests.swift; sourceTree = "<group>"; };
 		18726439213D40B100BD7BBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18E2772F21411C26007F5335 /* EmergencyNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyNumberCell.swift; sourceTree = "<group>"; };
+		18E2773021411C26007F5335 /* EmergencyNumberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmergencyNumberCell.xib; sourceTree = "<group>"; };
+		18E27733214120B5007F5335 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		18EAC4CB21413F490031BB2D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1B682CDEEDE70E90DA2AE24A /* Pods_SmartAmbulanceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartAmbulanceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA6071D58EC5B9BA292499F /* Pods-SmartAmbulance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartAmbulance.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartAmbulance/Pods-SmartAmbulance.release.xcconfig"; sourceTree = "<group>"; };
 		442E5E386190B722B055167A /* Pods_SmartAmbulance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartAmbulance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +148,8 @@
 				185CD693213E754E00CB3BCF /* SideMenuCell.xib */,
 				185CD699213E79A300CB3BCF /* HeaderSection.swift */,
 				185CD69A213E79A300CB3BCF /* HeaderSection.xib */,
+				18E2772F21411C26007F5335 /* EmergencyNumberCell.swift */,
+				18E2773021411C26007F5335 /* EmergencyNumberCell.xib */,
 			);
 			path = tableViewCells;
 			sourceTree = "<group>";
@@ -156,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				1862ED27213D6E6700AE56F7 /* Ambulance.swift */,
+				18E27733214120B5007F5335 /* Contacts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -213,6 +224,7 @@
 				18726423213D40B100BD7BBE /* Info.plist */,
 				1862ED24213D50F400AE56F7 /* GoogleService-Info.plist */,
 				1872641B213D40B000BD7BBE /* SmartAmbulance.xcdatamodeld */,
+				18EAC4CB21413F490031BB2D /* String+Extension.swift */,
 			);
 			path = SmartAmbulance;
 			sourceTree = "<group>";
@@ -369,6 +381,7 @@
 			files = (
 				18726422213D40B100BD7BBE /* LaunchScreen.storyboard in Resources */,
 				1862ED25213D50F500AE56F7 /* GoogleService-Info.plist in Resources */,
+				18E2773221411C26007F5335 /* EmergencyNumberCell.xib in Resources */,
 				1872641F213D40B100BD7BBE /* Assets.xcassets in Resources */,
 				185CD695213E754E00CB3BCF /* SideMenuCell.xib in Resources */,
 				185CD69C213E79A300CB3BCF /* HeaderSection.xib in Resources */,
@@ -516,11 +529,14 @@
 				185CD6A0213EAB0D00CB3BCF /* AboutUsViewController.swift in Sources */,
 				185CD698213E773200CB3BCF /* SideMenu.swift in Sources */,
 				18726415213D40B000BD7BBE /* AppDelegate.swift in Sources */,
+				18EAC4CC21413F490031BB2D /* String+Extension.swift in Sources */,
+				18E27734214120B5007F5335 /* Contacts.swift in Sources */,
 				185CD690213E727D00CB3BCF /* SideMenuViewController.swift in Sources */,
 				1862ED28213D6E6700AE56F7 /* Ambulance.swift in Sources */,
 				1872641D213D40B000BD7BBE /* SmartAmbulance.xcdatamodeld in Sources */,
 				185CD694213E754E00CB3BCF /* SideMenuCell.swift in Sources */,
 				185CD69E213EA7D800CB3BCF /* EmergencyViewController.swift in Sources */,
+				18E2773121411C26007F5335 /* EmergencyNumberCell.swift in Sources */,
 				185CD6A4213EB4DF00CB3BCF /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -299,18 +299,32 @@
                                     <constraint firstAttribute="height" constant="13" id="MBL-fa-zYG"/>
                                 </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ljY-NH-zpx">
+                                <rect key="frame" x="15" y="113" width="345" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. \nLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="MiD-FD-vy6" firstAttribute="bottom" secondItem="ljY-NH-zpx" secondAttribute="bottom" id="Bwb-ir-YIZ"/>
                             <constraint firstItem="2Oe-cC-gtM" firstAttribute="leading" secondItem="MiD-FD-vy6" secondAttribute="leading" id="CL3-1t-Mtx"/>
                             <constraint firstItem="MiD-FD-vy6" firstAttribute="trailing" secondItem="2Oe-cC-gtM" secondAttribute="trailing" id="G4i-fI-zdT"/>
                             <constraint firstItem="ain-cS-yVC" firstAttribute="top" secondItem="MiD-FD-vy6" secondAttribute="top" id="R6h-MX-5Hy"/>
                             <constraint firstItem="ain-cS-yVC" firstAttribute="leading" secondItem="MiD-FD-vy6" secondAttribute="leading" id="ZiJ-kG-ceu"/>
+                            <constraint firstItem="ljY-NH-zpx" firstAttribute="top" secondItem="2Oe-cC-gtM" secondAttribute="bottom" constant="20" id="bPF-H2-0q0"/>
                             <constraint firstItem="2Oe-cC-gtM" firstAttribute="top" secondItem="ain-cS-yVC" secondAttribute="bottom" id="iSl-TT-hBR"/>
+                            <constraint firstItem="MiD-FD-vy6" firstAttribute="trailing" secondItem="ljY-NH-zpx" secondAttribute="trailing" constant="15" id="lnv-YK-2Y0"/>
+                            <constraint firstItem="ljY-NH-zpx" firstAttribute="leading" secondItem="MiD-FD-vy6" secondAttribute="leading" constant="15" id="nSt-Ae-Nby"/>
                             <constraint firstItem="MiD-FD-vy6" firstAttribute="trailing" secondItem="ain-cS-yVC" secondAttribute="trailing" id="wKl-hl-6or"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MiD-FD-vy6"/>
                     </view>
+                    <connections>
+                        <outlet property="textViewAbout" destination="ljY-NH-zpx" id="Rzy-zi-vau"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4d-vs-Z55" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

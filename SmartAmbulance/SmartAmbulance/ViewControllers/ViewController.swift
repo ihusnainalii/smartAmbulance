@@ -145,26 +145,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Add Ambulances to map
     private func addAmbulancesOnMap() {
+        
+        var distValue = 0
+        var latitude = 0.0
+        var longitude = 0.0
+        
         for ambulance in self.ambulances {
             
             //get latitude and longitude
             guard let lat = ambulance.ambLat, let long =  ambulance.ambLong else {
                 return
-            }
-            
-            //Add Camera to amp to focus on first ambulance
-            if !isShown {
-                UIView.animate(withDuration: 0.5, animations: {
-                    
-                    // Map Camera
-                    let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: 16.0)
-                    self.mapView.camera = camera
-                    
-                }) { (success) in
-                    if success {
-                        self.isShown = true
-                    }
-                }
             }
             
             //Add merkers where ambulance is
@@ -176,7 +166,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             marker.iconView?.tintColor = .black
             marker.title = ambulance.name
             marker.map = mapView
+            
+            
+            let dist  = distance(lat1: lat, lon1: long, lat2: self.userLatitude, lon2: self.userLongitude, unit: "M")
+            if Int(dist) > 0 {
+                if Int(dist) > distValue {
+                    distValue = Int(dist)
+                    latitude = lat
+                    longitude = long
+                }else{
+                    latitude = lat
+                    longitude = long
+                }
+            }else{
+                distValue = Int(dist)
+                latitude = lat
+                longitude = long
+            }
         }
+        
+        //Add Camera to amp to focus on nearest ambulance
+        if !isShown {
+            UIView.animate(withDuration: 0.5, animations: {
+                // Map Camera
+                let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 16.0)
+                self.mapView.camera = camera
+                
+            }) { (success) in
+                if success {
+                    self.isShown = true
+                }
+            }
+        }
+        
+        
     }
     
     // MARK: - update Ambulances OnMap
