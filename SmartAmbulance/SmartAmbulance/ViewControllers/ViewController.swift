@@ -81,7 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         MBProgressHUD.showAdded(to: self.view, animated: trueValue)
         
         // Add Timer to get data
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateMap), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(updateMap), userInfo: nil, repeats: true)
         
     }
     
@@ -146,8 +146,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Add Ambulances to map
     private func addAmbulancesOnMap() {
-        var distanceArray = [Int]()
+        var distanceArray = [Double]()
         var latLongArray = [String]()
+        
+        let markerLocation = GMSMarker()
+        markerLocation.position = CLLocationCoordinate2D(latitude: self.userLatitude, longitude: self.userLongitude)
+        let ambulanceICONImage = UIImage(named: "iconUserLocation")!.withRenderingMode(.alwaysTemplate)
+        let markerView = UIImageView(image: ambulanceICONImage)
+        markerView.frame = CGRect(x: markerView.frame.origin.x, y: markerView.frame.origin.y, width: 50, height: 50)
+        markerLocation.iconView = markerView
+        markerLocation.iconView?.tintColor = .black
+        markerLocation.title = "Current Location"
+        markerLocation.map = mapView
         
         for ambulance in self.ambulances {
             
@@ -155,6 +165,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             guard let lat = ambulance.ambLat, let long =  ambulance.ambLong else {
                 return
             }
+            
             
             //Add merkers where ambulance is
             let marker = GMSMarker()
@@ -168,7 +179,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             
             let dist  = distance(lat1: lat, lon1: long, lat2: self.userLatitude, lon2: self.userLongitude, unit: "M")
-            distanceArray.append(Int(dist))
+            distanceArray.append(dist)
             let latLongStr = String(format:"%f", lat) + "," + String(format:"%f", long)
             latLongArray.append(latLongStr)
         }
